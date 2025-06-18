@@ -1,0 +1,27 @@
+<header class="burger-menu">
+  <button
+    class="burger"
+    id="burger-button"
+    matIconButton
+    [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with a menu"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <p [routerLink]="['/home']">Home</p>
+    </button>
+    <button mat-menu-item>
+      <p [routerLink]="['/profile']">Profile</p>
+    </button>
+  </mat-menu>
+</header>
+
+<!-- Desktop menu -->
+<section class="desktop-navbar">
+  <div>
+    <p [routerLink]="['/home']">Home</p>
+    <p [routerLink]="['/profile']">Profile</p>
+  </div>
+</section>

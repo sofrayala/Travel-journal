@@ -1,0 +1,64 @@
+.card {
+  min-height: 200px;
+  margin: 2rem;
+  border-radius: 2rem;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 1px rgba(29, 28, 28, 0.5);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.card-info {
+  margin: 2.5rem;
+}
+
+h1 {
+  font-size: xx-large;
+  color: white;
+  text-shadow: 5px 5px 5px black;
+}
+
+p {
+  font-size: large;
+  color: white;
+}
+
+.crud-button {
+  position: absolute;
+  top: 1rem;
+  right: 0.5rem;
+  align-self: unset;
+  justify-self: unset;
+  z-index: 2;
+  border: none;
+  background-color: transparent;
+  color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 600px) {
+  .cards-layout {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-size: x-large;
+  }
+  .card {
+    height: 250px;
+    width: 17%;
+    min-width: 300px;
+    margin: 0;
+  }
+}

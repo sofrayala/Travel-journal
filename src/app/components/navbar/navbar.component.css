@@ -1,0 +1,62 @@
+.burger {
+  display: inline-flex;
+}
+
+#burger-button {
+  border: white;
+  background-color: white;
+  border-radius: 0.4rem;
+  padding: 0.2rem;
+  transition: 2ms;
+  margin: 1rem;
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(215, 216, 218);
+  }
+}
+
+.burger-menu {
+  display: flex;
+}
+
+.desktop-navbar {
+  display: none;
+}
+
+/* //web navbar */
+
+@media (min-width: 600px) {
+  .burger-menu {
+    display: none;
+  }
+
+  .desktop-navbar {
+    display: flex;
+  }
+  section {
+    background-color: rgb(54, 54, 54);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    font-size: small;
+    font-weight: 600;
+    padding: 1rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 0rem 2rem;
+  }
+  p {
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

@@ -21,6 +21,9 @@
     <button mat-menu-item>
       <p [routerLink]="['/log-in']">Log in</p>
     </button>
+    <button mat-menu-item>
+      <p (click)="logOut()">Log out</p>
+    </button>
   </mat-menu>
 </header>
 
@@ -34,5 +37,6 @@
   <div>
     <p [routerLink]="['/sign-up']">Sign up</p>
     <p [routerLink]="['/log-in']">Log in</p>
+    <p (click)="logOut()">Log out</p>
   </div>
 </section>

@@ -9,27 +9,27 @@ import {
   providedIn: 'root',
 })
 export class AuthServiceService {
-  private _supabaseClient = inject(SupabaseService).supabaseClient;
+  private supabaseClient = inject(SupabaseService).supabaseClient;
 
   constructor() {
-    this._supabaseClient.auth.onAuthStateChange((session) => {
+    this.supabaseClient.auth.onAuthStateChange((session) => {
       console.log(session);
     });
   }
 
   session() {
-    return this._supabaseClient.auth.getSession();
+    return this.supabaseClient.auth.getSession();
   }
 
   signUp(credentials: SignUpWithPasswordCredentials) {
-    return this._supabaseClient.auth.signUp(credentials);
+    return this.supabaseClient.auth.signUp(credentials);
   }
 
   logIn(credentials: SignInWithPasswordCredentials) {
-    return this._supabaseClient.auth.signInWithPassword(credentials);
+    return this.supabaseClient.auth.signInWithPassword(credentials);
   }
 
   signOut() {
-    return this._supabaseClient.auth.signOut();
+    return this.supabaseClient.auth.signOut();
   }
 }

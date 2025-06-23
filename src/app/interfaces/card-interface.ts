@@ -1,6 +1,6 @@
 export interface CardInterface {
   name: string;
   date: string;
-  backgroundImageUrl: string;
+  backgroundImg: string;
   user_id: string;
 }

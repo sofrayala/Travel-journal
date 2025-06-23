@@ -18,33 +18,33 @@ export class CardComponent implements AfterViewInit {
 
   private router = inject(Router);
 
-  private notesService = inject(TripCardService);
-  trips = [
-    {
-      name: 'Ecuador',
-      date: 'September 2025',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/30785381/pexels-photo-30785381.jpeg',
-    },
-    //   {
-    //     name: 'Germany',
-    //     date: 'Agust 2025',
-    //     backgroundImageUrl:
-    //       'https://images.pexels.com/photos/28954966/pexels-photo-28954966.jpeg',
-    //   },
-    //   {
-    //     name: 'Chamonix',
-    //     date: 'October 2025',
-    //     backgroundImageUrl:
-    //       'https://images.pexels.com/photos/158089/aiguille-du-midi-chamonix-mountain-station-mont-blanc-158089.jpeg',
-    //   },
-  ];
+  tripsService = inject(TripCardService);
+  // trips = [
+  //   {
+  //     name: 'Ecuador',
+  //     date: 'September 2025',
+  //     backgroundImageUrl:
+  //       'https://images.pexels.com/photos/30785381/pexels-photo-30785381.jpeg',
+  //   },
+  //   {
+  //     name: 'Germany',
+  //     date: 'Agust 2025',
+  //     backgroundImageUrl:
+  //       'https://images.pexels.com/photos/28954966/pexels-photo-28954966.jpeg',
+  //   },
+  //   {
+  //     name: 'Chamonix',
+  //     date: 'October 2025',
+  //     backgroundImageUrl:
+  //       'https://images.pexels.com/photos/158089/aiguille-du-midi-chamonix-mountain-station-mont-blanc-158089.jpeg',
+  //   },
+  // ];
 
-  // getBackgroungImageStyle(url: string): string {
-  //   return `url('${url}')`;
-  // }
+  getBackgroundImgStyle(url: string): string {
+    return `url('${url}')`;
+  }
 
   ngAfterViewInit() {
-    this.notesService.getAllTrips();
+    this.tripsService.getAllTrips();
   }
 }

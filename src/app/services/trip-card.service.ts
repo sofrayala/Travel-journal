@@ -28,9 +28,18 @@ export class TripCardService {
         ...state,
         loading: true,
       }));
-      const response = await this.supabaseClient.from('trip').select();
-      console.log(response);
+      const { data } = await this.supabaseClient.from('trip').select();
+      if (data && data.length > 0) {
+        this.state.update((state) => ({
+          ...state,
+          tripCards: data,
+        }));
+      }
     } catch (error) {
+      this.state.update((state) => ({
+        ...state,
+        error: true,
+      }));
     } finally {
       this.state.update((state) => ({
         ...state,

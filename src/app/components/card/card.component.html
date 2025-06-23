@@ -1,7 +1,11 @@
 <div class="cards-layout">
-  @for (trip of trips; track trip.name){
-  <div class="card">
-    <!-- [ngStyle]="{'background-image': getBackgroungImageStyle(trip.backgroundImageUrl)    }" -->
+  @for (trip of tripsService.tripCards(); track trip.name){
+  <div
+    class="card"
+    [ngStyle]="{
+      'background-image': getBackgroundImgStyle(trip.backgroundImg)
+    }"
+  >
     >
     <button
       class="crud-button"

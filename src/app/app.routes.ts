@@ -6,6 +6,7 @@ import { AuthSignupComponent } from './auth/features/auth-signup/auth-signup.com
 import { AuthLoginComponent } from './auth/features/auth-login/auth-login.component';
 
 import { authGuard } from './guards/auth.guard';
+import { CardFormComponent } from './components/card-form/card-form.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path: 'profile', canActivate: [authGuard], component: ProfileComponent },
   { path: 'sign-up', component: AuthSignupComponent },
   { path: 'log-in', component: AuthLoginComponent },
+  { path: 'card-form', component: CardFormComponent },
 ];

@@ -104,4 +104,18 @@ export class TripCardService {
       console.log(error);
     }
   }
+
+  async deleteTrip(id: string) {
+    try {
+      const response = await this.supabaseClient
+        .from('trip')
+        .delete()
+        .eq('id', id);
+      alert('Trip deleted successfully');
+      this.getAllTrips();
+      this.router.navigateByUrl('/profile');
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

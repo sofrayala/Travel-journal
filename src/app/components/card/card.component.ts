@@ -55,4 +55,8 @@ export class CardComponent implements AfterViewInit {
     this.tripsService.editTrip(trip);
     this.router.navigateByUrl('/card-form');
   }
+
+  deleteTrip(trip: CardInterface) {
+    this.tripsService.deleteTrip(trip.id);
+  }
 }

@@ -2,6 +2,7 @@ import { Injectable, inject, signal, computed } from '@angular/core';
 import { SupabaseService } from './supabase.service';
 import { TripCardState } from '../interfaces/trip-card-state';
 import { AuthServiceService } from './auth/auth.service';
+import { CardInterface } from '../interfaces/card-interface';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,13 +12,15 @@ export class TripCardService {
   private supabaseClient = inject(SupabaseService).supabaseClient;
 
   private authService = inject(AuthServiceService);
-  private router = inject(Router);
 
   private state = signal<TripCardState>({
     tripCards: [],
     loading: false,
     error: false,
   });
+
+  tripSelected: CardInterface | null = null;
+  router = inject(Router);
 
   //selectors
   tripCards = computed(() => this.state().tripCards);
@@ -69,6 +72,34 @@ export class TripCardService {
       });
       alert('Trip added successfully');
       this.getAllTrips();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  editTrip(trip: CardInterface) {
+    this.tripSelected = trip;
+  }
+
+  async updateTrip(trip: {
+    id: string;
+    name: string;
+    date: string;
+    backgroundImg: string;
+  }) {
+    try {
+      const response = await this.supabaseClient
+        .from('trip')
+        .update({
+          name: trip.name,
+          date: trip.date,
+          backgroundImg: trip.backgroundImg,
+        })
+        .eq('id', trip.id);
+      alert('Trip updated successfully');
+      this.getAllTrips();
+      this.tripSelected = null;
+      this.router.navigateByUrl('/profile');
     } catch (error) {
       console.log(error);
     }

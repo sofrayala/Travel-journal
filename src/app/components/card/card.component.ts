@@ -19,6 +19,9 @@ export class CardComponent implements AfterViewInit {
   private router = inject(Router);
 
   tripsService = inject(TripCardService);
+
+  // tripSelected = this.tripsService.tripSelected;
+
   // trips = [
   //   {
   //     name: 'Ecuador',
@@ -46,5 +49,10 @@ export class CardComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.tripsService.getAllTrips();
+  }
+
+  editTrip(trip: CardInterface) {
+    this.tripsService.editTrip(trip);
+    this.router.navigateByUrl('/card-form');
   }
 }

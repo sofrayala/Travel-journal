@@ -1,12 +1,11 @@
 <div class="cards-layout">
-  @for (trip of trips; track trip.name){
+  @for (trip of tripsService.tripCards(); track trip.name){
   <div
     class="card"
     [ngStyle]="{
-      'background-image': getBackgroungImageStyle(trip.backgroundImageUrl)
+      'background-image': getBackgroundImgStyle(trip.backgroundImg)
     }"
   >
-    >
     <button
       class="crud-button"
       matIconButton
@@ -16,10 +15,10 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item (click)="editTrip(trip)">
         <span>Edit</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="deleteTrip(trip)">
         <span>Delete</span>
       </button>
     </mat-menu>
@@ -29,7 +28,8 @@
     </div>
   </div>
 
-  } @empty {+
-  <p>No trips found.</p>
+  } @empty {
+
+  <h2>No trips found.</h2>
   }
 </div>

@@ -1,82 +1,39 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, inject, Input } from '@angular/core';
 import { CardInterface } from '../../interfaces/card-interface';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthServiceService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
+import { TripCardService } from '../../services/trip-card.service';
 @Component({
   selector: 'app-card',
   imports: [CommonModule, MatButtonModule, MatMenuModule, MatIconModule],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
 })
-export class CardComponent {
-  trips = [
-    {
-      name: 'Ecuador',
-      date: '2025-08-15',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/30785381/pexels-photo-30785381.jpeg',
-    },
-    {
-      name: 'Germany',
-      date: '2025-09-10',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/28954966/pexels-photo-28954966.jpeg',
-    },
-    {
-      name: 'Chamonix',
-      date: '2025-07-01',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/158089/aiguille-du-midi-chamonix-mountain-station-mont-blanc-158089.jpeg',
-    },
-    {
-      name: 'Pirineos Aragoneses',
-      date: '2025-07-01',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/2166822/pexels-photo-2166822.jpeg',
-    },
+export class CardComponent implements AfterViewInit {
+  private authService = inject(AuthServiceService);
 
-    {
-      name: 'Germany',
-      date: '2025-09-10',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/28954966/pexels-photo-28954966.jpeg',
-    },
-    {
-      name: 'Ecuador',
-      date: '2025-08-15',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/30785381/pexels-photo-30785381.jpeg',
-    },
+  private router = inject(Router);
 
-    {
-      name: 'Pirineos Aragoneses',
-      date: '2025-07-01',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/2166822/pexels-photo-2166822.jpeg',
-    },
-    {
-      name: 'Ecuador',
-      date: '2025-08-15',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/30785381/pexels-photo-30785381.jpeg',
-    },
-    {
-      name: 'Chamonix',
-      date: '2025-07-01',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/158089/aiguille-du-midi-chamonix-mountain-station-mont-blanc-158089.jpeg',
-    },
-    {
-      name: 'Germany',
-      date: '2025-09-10',
-      backgroundImageUrl:
-        'https://images.pexels.com/photos/28954966/pexels-photo-28954966.jpeg',
-    },
-  ];
+  tripsService = inject(TripCardService);
 
-  getBackgroungImageStyle(url: string): string {
+  getBackgroundImgStyle(url: string): string {
     return `url('${url}')`;
+  }
+
+  ngAfterViewInit() {
+    this.tripsService.getAllTrips();
+  }
+
+  editTrip(trip: CardInterface) {
+    this.tripsService.editTrip(trip);
+    this.router.navigateByUrl('/card-form');
+  }
+
+  deleteTrip(trip: CardInterface) {
+    this.tripsService.deleteTrip(trip.id);
   }
 }

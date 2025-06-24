@@ -4,6 +4,7 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LogInInterface } from '../../../interfaces/log-in-interface';
 import { AuthServiceService } from '../../../services/auth/auth.service';
+import { TripCardService } from '../../../services/trip-card.service';
 
 @Component({
   selector: 'app-auth-login',
@@ -15,6 +16,7 @@ export class AuthLoginComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthServiceService);
   private router = inject(Router);
+  tripService = inject(TripCardService);
 
   form = this.formBuilder.group<LogInInterface>({
     email: this.formBuilder.control(null, [
@@ -31,8 +33,10 @@ export class AuthLoginComponent {
         email: this.form.value.email ?? '',
         password: this.form.value.password ?? '',
       });
-      this.router.navigateByUrl('/profile');
+      // this.router.navigateByUrl('/profile');
       console.log('Logged in!');
+      // this.tripService.getAllTrips();
+      window.location.href = '/profile';
     } catch (error) {
       if (error instanceof Error) {
         console.log(error);

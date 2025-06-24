@@ -64,7 +64,7 @@ export class TripCardService {
       const {
         data: { session },
       } = await this.authService.session();
-      const response = await this.supabaseClient.from('trip').insert({
+      await this.supabaseClient.from('trip').insert({
         user_id: session?.user.id,
         name: trip.name,
         date: trip.date,

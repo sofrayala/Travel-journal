@@ -1,1 +1,50 @@
-<p>trip works!</p>
+<app-navbar></app-navbar>
+@if(trip){
+<div class="max-w-2xl mx-auto mt-8 p-6 rounded-lg shadow-lg bg-white">
+  <div
+    class="h-100 w-full rounded-lg bg-cover bg-center mb-6 relative"
+    [ngStyle]="{ 'background-image': 'url(' + trip.backgroundImg + ')' }"
+  >
+    <h1
+      class="absolute bottom-4 left-4 text-3xl font-bold text-white drop-shadow-lg"
+    >
+      {{ trip.name }}
+    </h1>
+  </div>
+  <p class="text-gray-600 mb-4 flex gap-1 items-center gap-3">
+    <span class="font-semibold">Start date:</span> {{ trip.startDate }}<br />
+    <span class="text-gray-400">|</span>
+    <span class="font-semibold">End date:</span> {{ trip.endDate }}
+  </p>
+  <div class="mb-4">
+    <span class="font-semibold">Food:</span>
+    <div>
+      {{ trip.food }}
+    </div>
+  </div>
+  <div class="mb-4">
+    <span class="font-semibold">View:</span>
+    <div>
+      {{ trip.view }}
+    </div>
+  </div>
+  <div class="mb-4">
+    <span class="font-semibold">Nature:</span>
+    <div>
+      {{ trip.nature }}
+    </div>
+  </div>
+  <div class="mb-4">
+    <span class="font-semibold">Highlights:</span>
+    <div>
+      {{ trip.random }}
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingOrNotFound>
+  <div class="text-center mt-10 text-gray-500">
+    Loading trip information or trip not found.
+  </div>
+</ng-template>
+}

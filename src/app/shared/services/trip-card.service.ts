@@ -143,4 +143,13 @@ export class TripCardService {
       console.log(error);
     }
   }
+
+  async getTripById(id: string) {
+    const { data } = await this.supabaseClient
+      .from('trip')
+      .select('*')
+      .eq('id', id)
+      .single();
+    return data;
+  }
 }

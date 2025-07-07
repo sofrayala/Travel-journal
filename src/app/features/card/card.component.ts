@@ -36,4 +36,8 @@ export class CardComponent implements AfterViewInit {
   deleteTrip(trip: CardInterface) {
     this.tripsService.deleteTrip(trip.id);
   }
+
+  goToTrip(id: string) {
+    this.router.navigate(['/trip', id]);
+  }
 }

@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { NavbarComponent } from '../../../components/navbar/navbar.component';
+import { NavbarComponent } from '../../../../features/navbar/navbar.component';
 import { RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SignUpInterface } from '../../../interfaces/sign-up-interface';
-import { AuthServiceService } from '../../../services/auth/auth.service';
+import { SignUpInterface } from '../../../../features/interfaces/sign-up-interface';
+import { AuthServiceService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth-signup',

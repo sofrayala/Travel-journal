@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, inject, Input } from '@angular/core';
-import { CardInterface } from '../../interfaces/card-interface';
+import { CardInterface } from '../interfaces/card-interface';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthServiceService } from '../../services/auth/auth.service';
+import { AuthServiceService } from '../../core/auth/services/auth.service';
 import { Router } from '@angular/router';
-import { TripCardService } from '../../services/trip-card.service';
+import { TripCardService } from '../../shared/services/trip-card.service';
 @Component({
   selector: 'app-card',
   imports: [CommonModule, MatButtonModule, MatMenuModule, MatIconModule],

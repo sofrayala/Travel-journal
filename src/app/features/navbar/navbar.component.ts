@@ -3,8 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthServiceService } from '../../services/auth/auth.service';
-
+import { AuthServiceService } from '../../core/auth/services/auth.service';
 @Component({
   selector: 'app-navbar',
   imports: [RouterModule, MatButtonModule, MatMenuModule, MatIconModule],

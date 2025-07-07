@@ -5,9 +5,13 @@ h2 {
 
 @media (min-width: 600px) {
   h2 {
-    margin: 3rem 0rem;
+    margin: 1rem 0rem;
     align-self: center;
     justify-self: center;
-    font-size: 3rem;
+    font-size: 2rem;
+  }
+
+  section {
+    max-width: 90vw;
   }
 }

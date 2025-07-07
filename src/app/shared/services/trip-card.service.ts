@@ -1,8 +1,8 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
 import { SupabaseService } from './supabase.service';
-import { TripCardState } from '../interfaces/trip-card-state';
-import { AuthServiceService } from './auth/auth.service';
-import { CardInterface } from '../interfaces/card-interface';
+import { TripCardState } from '../../features/interfaces/trip-card-state';
+import { AuthServiceService } from '../../core/auth/services/auth.service';
+import { CardInterface } from '../../features/interfaces/card-interface';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -59,16 +59,31 @@ export class TripCardService {
     }
   }
 
-  async addTrip(trip: { name: string; date: string; backgroundImg: string }) {
+  async addTrip(trip: {
+    name: string;
+    startDate: string;
+    endDate: string;
+    backgroundImg: string;
+    food: string;
+    view: string;
+    nature: string;
+    random: string;
+  }) {
     try {
       const {
         data: { session },
       } = await this.authService.session();
+
       await this.supabaseClient.from('trip').insert({
         user_id: session?.user.id,
         name: trip.name,
-        date: trip.date,
+        startDate: trip.startDate,
+        endDate: trip.endDate,
         backgroundImg: trip.backgroundImg,
+        food: trip.food,
+        view: trip.view,
+        nature: trip.nature,
+        random: trip.random,
       });
       alert('Trip added successfully');
       this.getAllTrips();
@@ -84,16 +99,26 @@ export class TripCardService {
   async updateTrip(trip: {
     id: string;
     name: string;
-    date: string;
+    startDate: string;
+    endDate: string;
     backgroundImg: string;
+    food: string;
+    view: string;
+    nature: string;
+    random: string;
   }) {
     try {
       const response = await this.supabaseClient
         .from('trip')
         .update({
           name: trip.name,
-          date: trip.date,
+          startDate: trip.startDate,
+          endDate: trip.endDate,
           backgroundImg: trip.backgroundImg,
+          food: trip.food,
+          view: trip.view,
+          nature: trip.nature,
+          random: trip.random,
         })
         .eq('id', trip.id);
       alert('Trip updated successfully');

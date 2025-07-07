@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { SupabaseService } from '../supabase.service';
+import { SupabaseService } from '../../../shared/services/supabase.service';
 import {
   SignInWithPasswordCredentials,
   SignUpWithPasswordCredentials,

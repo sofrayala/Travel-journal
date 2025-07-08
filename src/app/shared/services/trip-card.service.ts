@@ -131,6 +131,8 @@ export class TripCardService {
   }
 
   async deleteTrip(id: string) {
+    const confirmed = window.confirm('Sure you want to delete this trip?');
+    if (!confirmed) return;
     try {
       const response = await this.supabaseClient
         .from('trip')

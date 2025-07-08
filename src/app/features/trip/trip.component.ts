@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TripCardService } from '../../shared/services/trip-card.service';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { CardInterface } from '../interfaces/card-interface';
 
 @Component({
   selector: 'app-trip',
@@ -16,13 +17,22 @@ export class TripComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private tripService: TripCardService
+    private tripsService: TripCardService,
+    private router: Router
   ) {}
+  editTrip(trip: CardInterface) {
+    this.tripsService.editTrip(trip);
+    this.router.navigateByUrl('/card-form');
+  }
+
+  deleteTrip(trip: CardInterface) {
+    this.tripsService.deleteTrip(trip.id);
+  }
 
   ngOnInit() {
     this.tripId = this.route.snapshot.paramMap.get('id');
     if (this.tripId) {
-      this.tripService
+      this.tripsService
         .getTripById(this.tripId)
         .then((trip) => (this.trip = trip));
     }

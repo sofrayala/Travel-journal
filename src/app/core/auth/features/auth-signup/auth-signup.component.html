@@ -21,7 +21,7 @@
             <label
               for="email"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Your email</label
+              >Email</label
             >
             <input
               formControlName="email"
@@ -32,6 +32,10 @@
               placeholder="name@company.com"
               required=""
             />
+            @if(form.get('email')?.invalid && form.get('email')?.touched ){
+            <small>
+              Email is required and must be a working email address. </small
+            >}
           </div>
           <div>
             <label
@@ -48,25 +52,16 @@
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required=""
             />
+            @if(form.get('password')?.invalid && form.get('password')?.touched
+            ){
+            <small>Password must be at least 5 characters</small>
+            }
           </div>
-          <!-- <div>
-            <label
-              for="confirm-password"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Confirm password</label
-            >
-            <input
-              type="confirm-password"
-              name="confirm-password"
-              id="confirm-password"
-              placeholder="••••••••"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-600 focus:border-green-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required=""
-            />
-          </div> -->
+
           <div class="flex items-start">
             <div class="flex items-center h-5">
               <input
+                formControlName="terms"
                 id="terms"
                 aria-describedby="terms"
                 type="checkbox"
@@ -87,9 +82,14 @@
               >
             </div>
           </div>
+          @if(form.get('terms')?.invalid && (form.get('terms')?.touched ||
+          submitted)) {
+          <small class="text-red-500">Must accept terms and conditions</small>
+
+          }
           <button
             type="submit"
-            class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 mt-2"
           >
             Create an account
           </button>

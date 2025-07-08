@@ -14,18 +14,28 @@ import { AuthServiceService } from '../../services/auth.service';
 export class AuthSignupComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthServiceService);
+  submitted = false;
 
   form = this.formBuilder.group<SignUpInterface>({
     email: this.formBuilder.control(null, [
       Validators.required,
       Validators.email,
     ]),
-    password: this.formBuilder.control(null, [Validators.required]),
+    password: this.formBuilder.control(null, [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+    terms: this.formBuilder.control(false, [Validators.requiredTrue]),
   });
 
   async submit() {
-    console.log(this.form.value);
-    if (this.form.invalid) return;
+    this.submitted = true;
+    if (this.form.invalid) {
+      console.log('Invalid form');
+      this.form.markAllAsTouched();
+      alert('Form not valid, please check all fields');
+      return;
+    }
 
     try {
       const authResponse = await this.authService.signUp({
@@ -33,11 +43,11 @@ export class AuthSignupComponent {
         password: this.form.value.password ?? '',
       });
 
-      console.log(authResponse);
       if (authResponse.error) throw authResponse.error;
-      alert('Please confirm your email');
+      alert('Registration successfull');
     } catch (error) {
       console.error(error);
+      alert('Registration failed');
     }
   }
 }

@@ -1,0 +1,15 @@
+#crud-buttons {
+  display: inherit;
+  position: absolute;
+  top: 1rem;
+  right: 0.8rem;
+  align-self: unset;
+  justify-self: unset;
+  z-index: 200;
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+#crud-buttons:hover {
+  cursor: pointer;
+}

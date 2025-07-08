@@ -4,16 +4,24 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignUpInterface } from '../../../../features/interfaces/sign-up-interface';
 import { AuthServiceService } from '../../services/auth.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-auth-signup',
-  imports: [NavbarComponent, RouterLink, RouterModule, ReactiveFormsModule],
+  imports: [
+    NavbarComponent,
+    RouterLink,
+    RouterModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+  ],
   templateUrl: './auth-signup.component.html',
   styleUrl: './auth-signup.component.css',
 })
 export class AuthSignupComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthServiceService);
+  private snackBar = inject(MatSnackBar);
   submitted = false;
 
   form = this.formBuilder.group<SignUpInterface>({
@@ -33,7 +41,10 @@ export class AuthSignupComponent {
     if (this.form.invalid) {
       console.log('Invalid form');
       this.form.markAllAsTouched();
-      alert('Form not valid, please check all fields');
+      this.snackBar.open('Form not valid, please check all fields', 'Close', {
+        duration: 4000,
+      });
+
       return;
     }
 
@@ -44,10 +55,14 @@ export class AuthSignupComponent {
       });
 
       if (authResponse.error) throw authResponse.error;
-      alert('Registration successfull');
+      this.snackBar.open('Registration successfull', 'Close', {
+        duration: 4000,
+      });
     } catch (error) {
       console.error(error);
-      alert('Registration failed');
+      this.snackBar.open('Registration failed', 'Close', {
+        duration: 4000,
+      });
     }
   }
 }

@@ -33,9 +33,8 @@ export class AuthLoginComponent {
         email: this.form.value.email ?? '',
         password: this.form.value.password ?? '',
       });
-      // this.router.navigateByUrl('/profile');
       console.log('Logged in!');
-      // this.tripService.getAllTrips();
+      this.tripService.getAllTrips();
       window.location.href = '/profile';
     } catch (error) {
       if (error instanceof Error) {

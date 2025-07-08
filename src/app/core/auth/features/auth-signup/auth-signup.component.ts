@@ -39,9 +39,8 @@ export class AuthSignupComponent {
   async submit() {
     this.submitted = true;
     if (this.form.invalid) {
-      console.log('Invalid form');
       this.form.markAllAsTouched();
-      this.snackBar.open('Form not valid, please check all fields', 'Close', {
+      this.snackBar.open('❌Form not valid, please check all fields', 'Close', {
         duration: 4000,
       });
 
@@ -55,12 +54,12 @@ export class AuthSignupComponent {
       });
 
       if (authResponse.error) throw authResponse.error;
-      this.snackBar.open('Registration successfull', 'Close', {
+      this.snackBar.open('✅Registration successfull', 'Close', {
         duration: 4000,
       });
     } catch (error) {
       console.error(error);
-      this.snackBar.open('Registration failed', 'Close', {
+      this.snackBar.open('❌Registration failed', 'Close', {
         duration: 4000,
       });
     }

@@ -8,6 +8,11 @@ section {
   position: relative;
 }
 
+button {
+  border-radius: 5rem;
+  padding: 1rem;
+}
+
 @media (min-width: 600px) {
   h2 {
     margin: 3rem 0rem;

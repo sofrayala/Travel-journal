@@ -1,0 +1,84 @@
+import { Component, inject } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TripCardService } from '../../shared/services/trip-card.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-card-form',
+  imports: [NavbarComponent, ReactiveFormsModule],
+  templateUrl: './card-form.component.html',
+  styleUrl: './card-form.component.css',
+})
+export class CardFormComponent {
+  formBuilder = inject(FormBuilder);
+  tripsService = inject(TripCardService);
+  router = inject(Router);
+  tripSelected = this.tripsService.tripSelected;
+
+  form = this.formBuilder.group({
+    name: this.formBuilder.control<string | null>(null, Validators.required),
+    startDate: this.formBuilder.control<string | null>(
+      null,
+      Validators.required
+    ),
+    endDate: this.formBuilder.control<string | null>(null, Validators.required),
+    backgroundImg: this.formBuilder.control<string | null>(
+      null,
+      Validators.required
+    ),
+    // Highlight
+    food: this.formBuilder.control<string | null>(null, Validators.required),
+    view: this.formBuilder.control<string | null>(null, Validators.required),
+    nature: this.formBuilder.control<string | null>(null, Validators.required),
+    random: this.formBuilder.control<string | null>(null, Validators.required),
+  });
+
+  ngOnInit() {
+    if (this.tripsService.tripSelected) {
+      this.form.setValue({
+        name: this.tripsService.tripSelected.name ?? '',
+        startDate: this.tripsService.tripSelected.startDate ?? '',
+        endDate: this.tripsService.tripSelected.endDate ?? '',
+        backgroundImg: this.tripsService.tripSelected.backgroundImg ?? '',
+        food: this.tripsService.tripSelected.food ?? '',
+        view: this.tripsService.tripSelected.view ?? '',
+        nature: this.tripsService.tripSelected.nature ?? '',
+        random: this.tripsService.tripSelected.random ?? '',
+      });
+    }
+  }
+
+  newTrip() {
+    if (this.form.invalid) return;
+
+    if (this.tripsService.tripSelected) {
+      //edit
+      this.tripsService.updateTrip({
+        id: this.tripsService.tripSelected.id,
+        name: this.form.value.name ?? '',
+        startDate: this.form.value.startDate ?? '',
+        endDate: this.form.value.endDate ?? '',
+        backgroundImg: this.form.value.backgroundImg ?? '',
+        food: this.form.value.food ?? '',
+        view: this.form.value.view ?? '',
+        nature: this.form.value.nature ?? '',
+        random: this.form.value.random ?? '',
+      });
+    } else {
+      //add
+      this.tripsService.addTrip({
+        name: this.form.value.name ?? '',
+        startDate: this.form.value.startDate ?? '',
+        endDate: this.form.value.endDate ?? '',
+        backgroundImg: this.form.value.backgroundImg ?? '',
+        food: this.form.value.food ?? '',
+        view: this.form.value.view ?? '',
+        nature: this.form.value.nature ?? '',
+        random: this.form.value.random ?? '',
+      });
+      this.router.navigateByUrl('/profile');
+    }
+  }
+}

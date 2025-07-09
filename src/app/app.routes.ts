@@ -1,12 +1,13 @@
 import { Routes } from '@angular/router';
 
-import { ProfileComponent } from './components/profile/profile.component';
-import { HomeComponent } from './components/home/home.component';
-import { AuthSignupComponent } from './auth/features/auth-signup/auth-signup.component';
-import { AuthLoginComponent } from './auth/features/auth-login/auth-login.component';
+import { ProfileComponent } from './features/profile/profile.component';
+import { HomeComponent } from './features/home/home.component';
+import { AuthSignupComponent } from './core/auth/features/auth-signup/auth-signup.component';
+import { AuthLoginComponent } from './core/auth/features/auth-login/auth-login.component';
 
-import { authGuard } from './guards/auth.guard';
-import { CardFormComponent } from './components/card-form/card-form.component';
+import { authGuard } from './core/auth/guards/auth.guard';
+import { CardFormComponent } from './features/card-form/card-form.component';
+import { TripComponent } from './features/trip/trip.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'sign-up', component: AuthSignupComponent },
   { path: 'log-in', component: AuthLoginComponent },
   { path: 'card-form', component: CardFormComponent },
+  { path: 'trip/:id', component: TripComponent },
 ];

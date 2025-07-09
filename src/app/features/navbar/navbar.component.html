@@ -1,0 +1,54 @@
+<header class="burger-menu">
+  <button
+    class="burger"
+    id="burger-button"
+    matIconButton
+    [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with a menu"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    @if (userEmail) {
+
+    <button mat-menu-item disabled>
+      <span>Hi, {{ userEmail }}</span>
+    </button>
+    <button mat-menu-item (click)="logOut()">
+      <span>Log out</span>
+    </button>
+    } @else {
+    <button mat-menu-item>
+      <span [routerLink]="['/sign-up']">Sign up</span>
+    </button>
+    <button mat-menu-item>
+      <span [routerLink]="['/log-in']">Log in</span>
+    </button>
+    }
+    <button mat-menu-item>
+      <span [routerLink]="['/home']">Home</span>
+    </button>
+    <button mat-menu-item>
+      <span [routerLink]="['/profile']">Profile</span>
+    </button>
+  </mat-menu>
+</header>
+
+<!-- Desktop menu -->
+<section class="desktop-navbar">
+  <div>
+    <p [routerLink]="['/home']">Home</p>
+    <p [routerLink]="['/profile']">Profile</p>
+  </div>
+  @if (userEmail) {
+  <div>
+    <span class="mr-4">Hi, {{ userEmail }}</span>
+    <button (click)="logOut()" class="ml-2">Log out</button>
+  </div>
+  } @else {
+  <div>
+    <p [routerLink]="['/sign-up']">Sign up</p>
+    <p [routerLink]="['/log-in']">Log in</p>
+  </div>
+  }
+</section>

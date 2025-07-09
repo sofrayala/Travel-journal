@@ -1,6 +1,11 @@
 h2 {
   margin-left: 2.5rem;
   margin-top: 0.5rem;
+  font-size: xx-large;
+}
+
+section {
+  position: relative;
 }
 
 @media (min-width: 600px) {

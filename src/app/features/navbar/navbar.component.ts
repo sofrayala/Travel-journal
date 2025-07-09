@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -10,10 +10,17 @@ import { AuthServiceService } from '../../core/auth/services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   private authService = inject(AuthServiceService);
 
   private router = inject(Router);
+
+  userEmail: string | null = null;
+
+  async ngOnInit() {
+    const { data } = await this.authService.session();
+    this.userEmail = data.session?.user?.email ?? null;
+  }
 
   async logOut() {
     await this.authService.signOut();

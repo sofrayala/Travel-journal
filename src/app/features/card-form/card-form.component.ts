@@ -5,10 +5,11 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TripCardService } from '../../shared/services/trip-card.service';
 import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-card-form',
-  imports: [NavbarComponent, ReactiveFormsModule],
+  imports: [NavbarComponent, ReactiveFormsModule, MatSnackBarModule],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.css',
 })
@@ -19,6 +20,7 @@ export class CardFormComponent {
   tripSelected = this.tripsService.tripSelected;
   http = inject(HttpClient);
   countries: string[] = [];
+  private snackBar = inject(MatSnackBar);
 
   //get countries API
 
@@ -32,7 +34,14 @@ export class CardFormComponent {
             .sort((a: string, b: string) => a.localeCompare(b));
         },
         error: (err) => {
-          console.error('Error', err);
+          this.snackBar.open(
+            '❌Error loading countries, please try again later',
+            'Close',
+            {
+              duration: 4000,
+            }
+          );
+          console.error('Error loading countries', err);
         },
       });
   }

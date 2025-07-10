@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -16,6 +17,27 @@ export class CardFormComponent {
   tripsService = inject(TripCardService);
   router = inject(Router);
   tripSelected = this.tripsService.tripSelected;
+  http = inject(HttpClient);
+  countries: string[] = [];
+
+  //get countries API
+
+  fetchData() {
+    this.http
+      .get<any[]>('https://restcountries.com/v3.1/all?fields=name')
+      .subscribe({
+        next: (response) => {
+          this.countries = response
+            .map((country) => country.name.common)
+            .sort((a: string, b: string) => a.localeCompare(b));
+        },
+        error: (err) => {
+          console.error('Error', err);
+        },
+      });
+  }
+
+  //form
 
   form = this.formBuilder.group({
     name: this.formBuilder.control<string | null>(null, Validators.required),
@@ -36,6 +58,7 @@ export class CardFormComponent {
   });
 
   ngOnInit() {
+    this.fetchData();
     if (this.tripsService.tripSelected) {
       this.form.setValue({
         name: this.tripsService.tripSelected.name ?? '',

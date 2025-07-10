@@ -1,13 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TripCardService } from '../../shared/services/trip-card.service';
 import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-card-form',
-  imports: [NavbarComponent, ReactiveFormsModule],
+  imports: [NavbarComponent, ReactiveFormsModule, MatSnackBarModule],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.css',
 })
@@ -16,6 +18,35 @@ export class CardFormComponent {
   tripsService = inject(TripCardService);
   router = inject(Router);
   tripSelected = this.tripsService.tripSelected;
+  http = inject(HttpClient);
+  countries: string[] = [];
+  private snackBar = inject(MatSnackBar);
+
+  //get countries API
+
+  fetchData() {
+    this.http
+      .get<any[]>('https://restcountries.com/v3.1/all?fields=name')
+      .subscribe({
+        next: (response) => {
+          this.countries = response
+            .map((country) => country.name.common)
+            .sort((a: string, b: string) => a.localeCompare(b));
+        },
+        error: (err) => {
+          this.snackBar.open(
+            '❌Error loading countries, please try again later',
+            'Close',
+            {
+              duration: 4000,
+            }
+          );
+          console.error('Error loading countries', err);
+        },
+      });
+  }
+
+  //form
 
   form = this.formBuilder.group({
     name: this.formBuilder.control<string | null>(null, Validators.required),
@@ -36,6 +67,7 @@ export class CardFormComponent {
   });
 
   ngOnInit() {
+    this.fetchData();
     if (this.tripsService.tripSelected) {
       this.form.setValue({
         name: this.tripsService.tripSelected.name ?? '',

@@ -4,6 +4,7 @@ import { TripCardState } from '../../features/interfaces/trip-card-state';
 import { AuthServiceService } from '../../core/auth/services/auth.service';
 import { CardInterface } from '../../features/interfaces/card-interface';
 import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ export class TripCardService {
 
   tripSelected: CardInterface | null = null;
   router = inject(Router);
+  private snackBar = inject(MatSnackBar);
 
   //selectors
   tripCards = computed(() => this.state().tripCards);
@@ -85,10 +87,20 @@ export class TripCardService {
         nature: trip.nature,
         random: trip.random,
       });
-      alert('Trip added successfully');
+      this.snackBar.open('✅Trip added successfully', 'Close', {
+        duration: 4000,
+      });
       this.getAllTrips();
+      this.tripSelected = null;
     } catch (error) {
       console.log(error);
+      this.snackBar.open(
+        '❌Something went wrong. Please try again later',
+        'Close',
+        {
+          duration: 4000,
+        }
+      );
     }
   }
 
@@ -121,29 +133,50 @@ export class TripCardService {
           random: trip.random,
         })
         .eq('id', trip.id);
-      alert('Trip updated successfully');
+
+      this.snackBar.open('✅Trip updated successfully', 'Close', {
+        duration: 4000,
+      });
       this.getAllTrips();
       this.tripSelected = null;
       this.router.navigateByUrl('/profile');
     } catch (error) {
       console.log(error);
+      this.snackBar.open(
+        '❌Something went wrong. Please try again later',
+        'Close',
+        {
+          duration: 4000,
+        }
+      );
     }
   }
 
   async deleteTrip(id: string) {
-    const confirmed = window.confirm('Sure you want to delete this trip?');
-    if (!confirmed) return;
-    try {
-      const response = await this.supabaseClient
-        .from('trip')
-        .delete()
-        .eq('id', id);
-      alert('Trip deleted successfully');
-      this.getAllTrips();
-      this.router.navigateByUrl('/profile');
-    } catch (error) {
-      console.log(error);
-    }
+    const snackBarRef = this.snackBar.open(
+      '❗Are you sure you want to delete this trip?',
+      'Delete',
+      { duration: 5000 }
+    );
+
+    snackBarRef.onAction().subscribe(async () => {
+      try {
+        await this.supabaseClient.from('trip').delete().eq('id', id);
+        this.snackBar.open('✅ Trip deleted successfully', 'Close', {
+          duration: 4000,
+        });
+        this.getAllTrips();
+        this.router.navigateByUrl('/profile');
+      } catch (error) {
+        this.snackBar.open(
+          '❌Something went wrong. Please try again later',
+          'Close',
+          {
+            duration: 4000,
+          }
+        );
+      }
+    });
   }
 
   async getTripById(id: string) {

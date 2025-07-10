@@ -87,6 +87,7 @@ export class TripCardService {
       });
       alert('Trip added successfully');
       this.getAllTrips();
+      this.tripSelected = null;
     } catch (error) {
       console.log(error);
     }

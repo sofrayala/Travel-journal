@@ -1,7 +1,7 @@
-section {
+header {
   background: url("https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg")
     center/cover;
-  height: calc(100vh - 68px);
+  height: calc(100vh - 40px);
   width: auto;
   position: relative;
 }
@@ -12,6 +12,10 @@ section {
   top: 0;
   left: 0;
   background: rgba(63, 62, 62, 0.507);
+}
+
+#features {
+  background-color: rgba(239, 241, 243, 0.678);
 }
 
 h2 {

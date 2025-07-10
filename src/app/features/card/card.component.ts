@@ -5,11 +5,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthServiceService } from '../../core/auth/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TripCardService } from '../../shared/services/trip-card.service';
 @Component({
   selector: 'app-card',
-  imports: [CommonModule, MatButtonModule, MatMenuModule, MatIconModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    RouterLink,
+  ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',
 })

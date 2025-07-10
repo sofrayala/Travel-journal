@@ -156,7 +156,7 @@ export class TripCardService {
     const snackBarRef = this.snackBar.open(
       '❗Are you sure you want to delete this trip?',
       'Delete',
-      { duration: 5000, panelClass: ['snackbar-warning'] }
+      { duration: 5000 }
     );
 
     snackBarRef.onAction().subscribe(async () => {
@@ -168,7 +168,13 @@ export class TripCardService {
         this.getAllTrips();
         this.router.navigateByUrl('/profile');
       } catch (error) {
-        console.log(error);
+        this.snackBar.open(
+          '❌Something went wrong. Please try again later',
+          'Close',
+          {
+            duration: 4000,
+          }
+        );
       }
     });
   }

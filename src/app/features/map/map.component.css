@@ -23,3 +23,7 @@ section {
   border-radius: 1rem;
   overflow: hidden;
 }
+
+.marker {
+  position: absolute;
+}

@@ -25,16 +25,17 @@ export class MapComponent implements OnInit, OnDestroy {
   private supabaseClient = inject(SupabaseService).supabaseClient;
   private http = inject(HttpClient);
   countriesDb: string[] = [];
+  mapboxgl: any;
 
   async ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      const mapboxgl = (await import('mapbox-gl')).default;
+      this.mapboxgl = (await import('mapbox-gl')).default;
 
-      this.map = new mapboxgl.Map({
+      this.map = new this.mapboxgl.Map({
         accessToken: environment.MAPBOX_TOKEN,
         container: this.mapContainer.nativeElement,
-        center: [-98.54818, 40.00811],
-        zoom: 1,
+        center: [-78, -0.5],
+        zoom: 3,
       });
     }
 
@@ -46,7 +47,6 @@ export class MapComponent implements OnInit, OnDestroy {
     if (data) {
       this.countriesDb = data.map((row: any) => row.name);
     }
-    console.log(this.countriesDb);
     this.fetchGeocodes();
   }
 
@@ -69,6 +69,23 @@ export class MapComponent implements OnInit, OnDestroy {
           console.log(
             `Coordinates for ${country}: longitude=${longitude}, latitude=${latitude}`
           );
+          if (this.map) {
+            // popup
+            const popup = new this.mapboxgl.Popup({
+              className: 'popup',
+            })
+              .setHTML(`<p>${country}</p>`)
+              .setMaxWidth('300px');
+
+            //marker
+            new this.mapboxgl.Marker({
+              color: 'blue',
+              className: 'marker',
+            })
+              .setLngLat([+longitude, +latitude])
+              .setPopup(popup)
+              .addTo(this.map);
+          }
         },
         error: (err) => {
           console.error(`Error fetching geocode for ${country}`, err);

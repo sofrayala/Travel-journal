@@ -27,6 +27,7 @@ export class MapComponent implements OnInit, OnDestroy {
   private http = inject(HttpClient);
   // private fetchGeocodesService = inject(FetchGeocodesService);
   countriesDb: string[] = [];
+  trips: any[] = [];
   mapboxgl: any;
 
   async ngOnInit() {
@@ -45,9 +46,10 @@ export class MapComponent implements OnInit, OnDestroy {
 
     const { data, error } = await this.supabaseClient
       .from('trip')
-      .select('name');
+      .select('name, backgroundImg');
     if (data) {
       this.countriesDb = data.map((row: any) => row.name);
+      this.trips = data;
     }
     this.fetchGeocodes();
     // this.fetchGeocodesService.fetchGeocodes(
@@ -74,13 +76,31 @@ export class MapComponent implements OnInit, OnDestroy {
           const [longitude, latitude] =
             result?.features?.[0].geometry.coordinates;
 
+          //get img for map
+          let tripImg = '';
+
+          if (this.trips && Array.isArray(this.trips)) {
+            const trip = this.trips.find((t: any) => t.name === country);
+            tripImg = trip?.backgroundImg || '';
+          }
+
+          const popupHtml = `
+          <div style="display:flex;align-items:center;justify-content:center;">
+            ${
+              tripImg
+                ? `<img src="${tripImg}" alt="${country}" style="width:70px; height:70px;object-fit:cover;border-radius:8px;" />`
+                : ''
+            }
+          </div>
+        `;
+
           if (this.map) {
             // popup
             const popup = new this.mapboxgl.Popup({
               className: 'popup',
             })
-              .setHTML(`<p>${country}</p>`)
-              .setMaxWidth('300px');
+              .setHTML(popupHtml)
+              .setMaxWidth('100px');
 
             //marker
             new this.mapboxgl.Marker({

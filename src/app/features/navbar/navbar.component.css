@@ -4,14 +4,14 @@
 
 #burger-button {
   border: white;
-  background-color: white;
+  background-color: transparent;
   border-radius: 0.4rem;
   padding: 0.2rem;
   transition: 2ms;
   margin: 1rem;
   &:hover {
     cursor: pointer;
-    background-color: rgb(215, 216, 218);
+    transform: scale(1.05);
   }
 }
 

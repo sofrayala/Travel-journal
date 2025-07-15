@@ -2,12 +2,8 @@ header {
   height: calc(100vh - 51.5px);
 }
 
-#features {
-  /* background-color: rgba(239, 241, 243, 0.678); */
-}
-
 h2 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 800;
 }
 

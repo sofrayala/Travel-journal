@@ -20,6 +20,11 @@ export class TripComponent implements OnInit {
     private tripsService: TripCardService,
     private router: Router
   ) {}
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  }
+
   editTrip(trip: CardInterface) {
     this.tripsService.editTrip(trip);
     this.router.navigateByUrl('/card-form');

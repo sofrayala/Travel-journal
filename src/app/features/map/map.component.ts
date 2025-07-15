@@ -11,6 +11,7 @@ import { PLATFORM_ID } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { SupabaseService } from '../../shared/services/supabase.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 // import { FetchGeocodesService } from '../../shared/fetch-geocodes.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class MapComponent implements OnInit, OnDestroy {
   private platformId = inject(PLATFORM_ID);
   private supabaseClient = inject(SupabaseService).supabaseClient;
   private http = inject(HttpClient);
+  private router = inject(Router);
   // private fetchGeocodesService = inject(FetchGeocodesService);
   countriesDb: string[] = [];
   trips: any[] = [];
@@ -46,7 +48,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
     const { data, error } = await this.supabaseClient
       .from('trip')
-      .select('name, backgroundImg');
+      .select('id, name, backgroundImg');
     if (data) {
       this.countriesDb = data.map((row: any) => row.name);
       this.trips = data;
@@ -78,17 +80,19 @@ export class MapComponent implements OnInit, OnDestroy {
 
           //get img for map
           let tripImg = '';
+          let tripId = '';
 
           if (this.trips && Array.isArray(this.trips)) {
             const trip = this.trips.find((t: any) => t.name === country);
             tripImg = trip?.backgroundImg || '';
+            tripId = trip?.id || '';
           }
 
           const popupHtml = `
-          <div style="display:flex;align-items:center;justify-content:center;">
+          <div class="popup-trip-link" data-trip-id="${tripId}" style="display:flex;align-items:center;justify-content:center;">
             ${
               tripImg
-                ? `<img src="${tripImg}" alt="${country}" style="width:70px; height:70px;object-fit:cover;border-radius:8px;" />`
+                ? `<img src="${tripImg}" alt="${country}" style="width:65px; height:65px;object-fit:cover;border-radius:8px;" />`
                 : ''
             }
           </div>
@@ -110,6 +114,24 @@ export class MapComponent implements OnInit, OnDestroy {
               .setLngLat([+longitude, +latitude])
               .setPopup(popup)
               .addTo(this.map);
+            popup.on('open', () => {
+              const el = document.querySelector('.popup-trip-link');
+              if (el) {
+                el.addEventListener('click', (event) => {
+                  const clickedTripId = (
+                    event.currentTarget as HTMLElement
+                  ).getAttribute('data-trip-id');
+                  console.log('Popup clicked', { clickedTripId });
+                  if (clickedTripId) {
+                    this.goToTrip(clickedTripId); // Use your function here
+                  } else {
+                    console.log('No tripId found for this marker.');
+                  }
+                });
+              } else {
+                console.log('Popup element not found in DOM.');
+              }
+            });
           }
         },
         error: (err) => {
@@ -122,5 +144,9 @@ export class MapComponent implements OnInit, OnDestroy {
     if (this.map) {
       this.map.remove();
     }
+  }
+
+  goToTrip(id: string) {
+    this.router.navigate(['/trip', id]);
   }
 }

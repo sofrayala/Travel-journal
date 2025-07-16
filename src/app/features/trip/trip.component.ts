@@ -4,10 +4,11 @@ import { TripCardService } from '../../shared/services/trip-card.service';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CardInterface } from '../interfaces/card-interface';
+import { RatingsComponent } from '../ratings/ratings.component';
 
 @Component({
   selector: 'app-trip',
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, NavbarComponent, RatingsComponent],
   templateUrl: './trip.component.html',
   styleUrl: './trip.component.css',
 })

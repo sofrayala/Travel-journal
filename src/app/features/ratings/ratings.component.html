@@ -1,0 +1,24 @@
+@if (!loading) { @for (cat of getCategoryKeys(); track cat) {
+<div class="mb-2">
+  <span class="font-semibold">{{ cat }}</span>
+  @for (star of [1, 2, 3, 4, 5]; track star) {
+  <span
+    (click)="setLocalRating(cat, star)"
+    [class.text-yellow-400]="ratings[cat] >= star"
+    class="cursor-pointer text-2xl"
+    >★</span
+  >
+  }
+</div>
+}
+<button
+  class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+  (click)="submitRatings()"
+>
+  Submit Ratings
+</button>
+@if (error) {
+<div class="text-red-500 mt-2">{{ error }}</div>
+} } @else {
+<div class="text-gray-500">Loading ratings...</div>
+}

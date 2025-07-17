@@ -10,21 +10,25 @@ export class RatingsService {
     const { data } = await this.supabaseClient
       .from('ratings')
       .select('*')
-      .eq('country', country)
       .eq('user_id', userId)
       .maybeSingle();
     return data;
   }
 
   async setRating(
-    country: string,
     userId: string,
+    tripId: string,
+    country: string,
     ratings: { food: number; people: number; scenery: number; vibe: number }
   ) {
+    console.log('setRating called with:', { userId, tripId, ratings }); // Debug
+    if (!userId || !tripId) {
+      throw new Error('userId and tripId must be provided and not empty');
+    }
     const { error } = await this.supabaseClient
       .from('ratings')
-      .upsert([{ country, user_id: userId, ...ratings }], {
-        onConflict: 'country,user_id',
+      .upsert([{ trip_id: tripId, user_id: userId, country, ...ratings }], {
+        onConflict: 'trip_id,user_id',
       });
     return error;
   }

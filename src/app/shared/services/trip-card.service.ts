@@ -121,6 +121,11 @@ export class TripCardService {
     random: string;
   }) {
     try {
+      const {
+        data: { session },
+      } = await this.authService.session();
+      const currentUserId = session?.user.id;
+
       const response = await this.supabaseClient
         .from('trip')
         .update({
@@ -133,7 +138,8 @@ export class TripCardService {
           nature: trip.nature,
           random: trip.random,
         })
-        .eq('id', trip.id);
+        .eq('id', trip.id)
+        .eq('user_id', currentUserId);
 
       this.snackBar.open('✅Trip updated successfully', 'Close', {
         duration: 4000,

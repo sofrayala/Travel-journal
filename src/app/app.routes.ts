@@ -8,6 +8,7 @@ import { AuthLoginComponent } from './core/auth/features/auth-login/auth-login.c
 import { authGuard } from './core/auth/guards/auth.guard';
 import { CardFormComponent } from './features/card-form/card-form.component';
 import { TripComponent } from './features/trip/trip.component';
+import { InsightsComponent } from './features/insights/insights.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'log-in', component: AuthLoginComponent },
   { path: 'card-form', component: CardFormComponent },
   { path: 'trip/:id', component: TripComponent },
+  { path: 'insights', component: InsightsComponent },
 ];

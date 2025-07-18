@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<div class="flex flex-col items-center mt-8" id="bar-div">
+  <h2 class="text-2xl font-bold mb-4">Average Country Ratings</h2>
+  <canvas
+    baseChart
+    [data]="chartData"
+    type="bar"
+    [options]="chartOptions"
+    width="300"
+    height="200"
+  >
+  </canvas>
+</div>

@@ -12,6 +12,7 @@ import { environment } from '../../../environments/environment';
 import { SupabaseService } from '../../shared/services/supabase.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../../core/auth/services/auth.service';
 // import { FetchGeocodesService } from '../../shared/fetch-geocodes.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class MapComponent implements OnInit, OnDestroy {
   map: any;
   private platformId = inject(PLATFORM_ID);
   private supabaseClient = inject(SupabaseService).supabaseClient;
+  private authService = inject(AuthServiceService);
   private http = inject(HttpClient);
   private router = inject(Router);
   // private fetchGeocodesService = inject(FetchGeocodesService);
@@ -33,6 +35,10 @@ export class MapComponent implements OnInit, OnDestroy {
   mapboxgl: any;
 
   async ngOnInit() {
+    const {
+      data: { session },
+    } = await this.authService.session();
+    const userId = session?.user.id;
     if (isPlatformBrowser(this.platformId)) {
       this.mapboxgl = (await import('mapbox-gl')).default;
 
@@ -48,7 +54,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
     const { data, error } = await this.supabaseClient
       .from('trip')
-      .select('id, name, backgroundImg');
+      .select('id, name, backgroundImg')
+      .eq('user_id', userId);
     if (data) {
       this.countriesDb = data.map((row: any) => row.name);
       this.trips = data;

@@ -78,29 +78,31 @@
   <div class="mb-4">
     <p class="font-bold text-xl text-gray-600 my-3" id="title">Highlights</p>
     <span class="font-semibold text-lg">Food:</span>
-    <div class="font-light my-2">
+    <div class="my-2">
       {{ trip.food }}
     </div>
   </div>
   <div class="mb-4">
     <span class="font-semibold text-lg">View:</span>
-    <div class="font-light">
+    <div class="my-2">
       {{ trip.view }}
     </div>
   </div>
   <div class="mb-4">
     <span class="font-semibold text-lg">Nature:</span>
-    <div class="font-light">
+    <div class="my-2">
       {{ trip.nature }}
     </div>
   </div>
   <div class="mb-4">
     <span class="font-semibold text-lg">Random:</span>
-    <div class="font-light">
+    <div class="my-2">
       {{ trip.random }}
     </div>
   </div>
 </div>
+<!-- ratings -->
+<app-ratings [tripId]="trip.id"></app-ratings>
 }
 <ng-template #loadingOrNotFound>
   <div class="text-center mt-10 text-gray-500">

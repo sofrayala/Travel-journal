@@ -4,19 +4,23 @@ import {
   OnInit,
   OnChanges,
   SimpleChanges,
+  inject,
 } from '@angular/core';
 import { RatingsService } from '../../shared/services/ratings.service';
 import { AuthServiceService } from '../../core/auth/services/auth.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-ratings',
-  imports: [],
+  imports: [MatSnackBarModule, TitleCasePipe],
   templateUrl: './ratings.component.html',
   styleUrl: './ratings.component.css',
 })
 export class RatingsComponent implements OnChanges {
   @Input() country!: string;
   @Input() tripId!: string;
+  private snackBar = inject(MatSnackBar);
 
   ratings = {
     food: 0,
@@ -95,7 +99,7 @@ export class RatingsComponent implements OnChanges {
     try {
       console.log('Submitting rating:', {
         userId: this.userId,
-        tripId: this.tripId, // or this.trip?.id if you have a trip object
+        tripId: this.tripId,
         ratings: this.ratings,
       });
       await this.ratingsService.setRating(
@@ -104,7 +108,17 @@ export class RatingsComponent implements OnChanges {
         this.country,
         this.ratings
       );
-      // console.log(this.country, this.tripId, this.userId, this.ratings);
+      this.snackBar.open('Ratings submitted succesfully', 'Close', {
+        duration: 4000,
+      });
+      //cleaning stars after sub
+      this.ratings = {
+        food: 0,
+        people: 0,
+        scenery: 0,
+        vibe: 0,
+      };
+
       this.error = null;
     } catch (error) {
       this.error = 'Could not submit ratings';

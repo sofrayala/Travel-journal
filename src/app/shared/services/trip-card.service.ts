@@ -11,7 +11,7 @@ import { FetchGeocodesService } from '../fetch-geocodes.service';
   providedIn: 'root',
 })
 export class TripCardService {
-  private supabaseClient = inject(SupabaseService).supabaseClient;
+  supabaseClient = inject(SupabaseService).supabaseClient;
 
   private authService = inject(AuthServiceService);
 
@@ -193,5 +193,22 @@ export class TripCardService {
       .eq('id', id)
       .single();
     return data;
+  }
+
+  ///ratings
+  async updateTripRatings(
+    tripId: string,
+    ratings: {
+      r_food: number;
+      r_people: number;
+      r_scenery: number;
+      r_vibe: number;
+    }
+  ) {
+    const { error } = await this.supabaseClient
+      .from('trip')
+      .update(ratings)
+      .eq('id', tripId);
+    return error;
   }
 }

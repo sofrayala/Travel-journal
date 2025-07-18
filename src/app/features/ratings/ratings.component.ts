@@ -6,10 +6,10 @@ import {
   SimpleChanges,
   inject,
 } from '@angular/core';
-import { RatingsService } from '../../shared/services/ratings.service';
 import { AuthServiceService } from '../../core/auth/services/auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { TitleCasePipe } from '@angular/common';
+import { TripCardService } from '../../shared/services/trip-card.service';
 
 @Component({
   selector: 'app-ratings',
@@ -18,7 +18,6 @@ import { TitleCasePipe } from '@angular/common';
   styleUrl: './ratings.component.css',
 })
 export class RatingsComponent implements OnChanges {
-  @Input() country!: string;
   @Input() tripId!: string;
   private snackBar = inject(MatSnackBar);
 
@@ -34,21 +33,20 @@ export class RatingsComponent implements OnChanges {
   userId: string | null = null;
 
   constructor(
-    private ratingsService: RatingsService,
-    private authService: AuthServiceService
+    // private ratingsService: RatingsService,
+    private authService: AuthServiceService,
+    private tripCardService: TripCardService
   ) {}
 
-  //clean stars
-
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['tripId'] || changes['country']) {
+    if (changes['tripId'] || changes['name']) {
       this.ratings = {
         food: 0,
         people: 0,
         scenery: 0,
         vibe: 0,
       };
-      this.ngOnInit();
+      this.loadRatings();
     }
   }
 
@@ -56,7 +54,7 @@ export class RatingsComponent implements OnChanges {
     return Object.keys(this.ratings) as (keyof typeof this.ratings)[];
   }
 
-  async ngOnInit() {
+  async loadRatings() {
     this.loading = true;
     try {
       const {
@@ -64,17 +62,22 @@ export class RatingsComponent implements OnChanges {
       } = await this.authService.session();
       this.userId = session?.user.id ?? null;
 
-      if (this.userId) {
-        const data = await this.ratingsService.getRating(
-          this.country,
-          this.userId
-        );
+      if (this.userId && this.tripId) {
+        // Fetch trip data and set ratings
+        const { data, error } = await this.tripCardService.supabaseClient
+          .from('trip')
+          .select('r_food, r_people, r_scenery, r_vibe')
+          .eq('id', this.tripId)
+          .maybeSingle();
+
+        console.log('Trip ratings data:', data, 'Error:', error);
+
         if (data) {
           this.ratings = {
-            food: data.food,
-            people: data.people,
-            scenery: data.scenery,
-            vibe: data.vibe,
+            food: data.r_food ?? 0,
+            people: data.r_people ?? 0,
+            scenery: data.r_scenery ?? 0,
+            vibe: data.r_vibe ?? 0,
           };
         }
       } else {
@@ -102,12 +105,15 @@ export class RatingsComponent implements OnChanges {
         tripId: this.tripId,
         ratings: this.ratings,
       });
-      await this.ratingsService.setRating(
-        this.userId,
-        this.tripId,
-        this.country,
-        this.ratings
-      );
+      await this.tripCardService.supabaseClient
+        .from('trip')
+        .update({
+          r_food: this.ratings.food,
+          r_people: this.ratings.people,
+          r_scenery: this.ratings.scenery,
+          r_vibe: this.ratings.vibe,
+        })
+        .eq('id', this.tripId);
       this.snackBar.open('Ratings submitted succesfully', 'Close', {
         duration: 4000,
       });

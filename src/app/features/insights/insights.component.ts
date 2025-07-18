@@ -61,7 +61,7 @@ export class InsightsComponent {
     indexAxis: 'y',
     responsive: true,
     plugins: {
-      legend: { display: true },
+      legend: { display: false },
     },
   };
 

@@ -25,7 +25,7 @@
   </div>
 </div>
 } @if(!loading) {
-<div class="flex flex-col items-center m-8" id="bar-div">
+<div class="flex flex-col items-center mt-12" id="bar-div">
   <!-- bar -->
   <h2 class="text-2xl font-bold mb-4">Average Country Ratings</h2>
   <canvas
@@ -38,14 +38,14 @@
   >
   </canvas>
   <!-- lines -->
-  <h2 class="text-2xl font-bold mb-4">Category Averages by Country</h2>
+  <h2 class="text-2xl font-bold mb-4 mt-10">Category Averages by Country</h2>
   <canvas
     baseChart
     [data]="lineChartData"
     type="line"
     [options]="lineChartOptions"
-    width="500"
-    height="350"
+    width="400"
+    height="300"
   ></canvas>
 </div>
 }

@@ -16,29 +16,6 @@ export class FetchGeocodesService {
   private http = inject(HttpClient);
   countriesDb: string[] = [];
 
-  // async ngOnInit() {
-  //   if (isPlatformBrowser(this.platformId)) {
-  //     this.mapboxgl = (await import('mapbox-gl')).default;
-
-  //     this.map = new this.mapboxgl.Map({
-  //       accessToken: environment.MAPBOX_TOKEN,
-  //       container: this.mapContainer.nativeElement,
-  //       center: [-78, -0.5],
-  //       zoom: 3,
-  //     });
-  //   }
-
-  //   //Get country names from trips db
-
-  //   const { data, error } = await this.supabaseClient
-  //     .from('trip')
-  //     .select('name');
-  //   if (data) {
-  //     this.countriesDb = data.map((row: any) => row.name);
-  //   }
-  //   this.fetchGeocodes();
-  // }
-
   fetchGeocodes(mapboxgl: any, map: any, countriesDb: any) {
     for (const country of countriesDb) {
       const url = `https://api.mapbox.com/search/geocode/v6/forward?q=${encodeURIComponent(
@@ -80,9 +57,4 @@ export class FetchGeocodesService {
       });
     }
   }
-  // ngOnDestroy(): void {
-  //   if (this.map) {
-  //     this.map.remove();
-  //   }
-  // }
 }

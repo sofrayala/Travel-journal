@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthLoginComponent } from './auth-login.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('AuthLoginComponent', () => {
   let component: AuthLoginComponent;
@@ -8,9 +9,9 @@ describe('AuthLoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthLoginComponent]
-    })
-    .compileComponents();
+      imports: [AuthLoginComponent],
+      providers: [{ provide: ActivatedRoute, useValue: {} }],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AuthLoginComponent);
     component = fixture.componentInstance;

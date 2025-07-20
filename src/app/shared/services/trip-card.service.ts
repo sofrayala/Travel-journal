@@ -5,7 +5,7 @@ import { AuthServiceService } from '../../core/auth/services/auth.service';
 import { CardInterface } from '../../features/interfaces/card-interface';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { FetchGeocodesService } from '../fetch-geocodes.service';
+import { FetchGeocodesService } from './fetch-geocodes.service';
 
 @Injectable({
   providedIn: 'root',

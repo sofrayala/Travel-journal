@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ElementRef, ViewChild, inject } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
-import { environment } from '../../environments/environment.development';
-import { SupabaseService } from './services/supabase.service';
+import { environment } from '../../../environments/environment.development';
+import { SupabaseService } from './supabase.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -15,29 +15,6 @@ export class FetchGeocodesService {
   private supabaseClient = inject(SupabaseService).supabaseClient;
   private http = inject(HttpClient);
   countriesDb: string[] = [];
-
-  // async ngOnInit() {
-  //   if (isPlatformBrowser(this.platformId)) {
-  //     this.mapboxgl = (await import('mapbox-gl')).default;
-
-  //     this.map = new this.mapboxgl.Map({
-  //       accessToken: environment.MAPBOX_TOKEN,
-  //       container: this.mapContainer.nativeElement,
-  //       center: [-78, -0.5],
-  //       zoom: 3,
-  //     });
-  //   }
-
-  //   //Get country names from trips db
-
-  //   const { data, error } = await this.supabaseClient
-  //     .from('trip')
-  //     .select('name');
-  //   if (data) {
-  //     this.countriesDb = data.map((row: any) => row.name);
-  //   }
-  //   this.fetchGeocodes();
-  // }
 
   fetchGeocodes(mapboxgl: any, map: any, countriesDb: any) {
     for (const country of countriesDb) {
@@ -80,9 +57,4 @@ export class FetchGeocodesService {
       });
     }
   }
-  // ngOnDestroy(): void {
-  //   if (this.map) {
-  //     this.map.remove();
-  //   }
-  // }
 }

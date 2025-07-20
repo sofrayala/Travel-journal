@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.development';
 import { SupabaseService } from '../../shared/services/supabase.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';

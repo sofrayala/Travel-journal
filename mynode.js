@@ -10,7 +10,10 @@ const envFile = `export const environment = {
     MAP_BOX_TOKEN: '${process.env.MAP_BOX_TOKEN}',
 };
 `;
-const targetPath = path.join(__dirname, "./src/environments/environment.ts");
+const targetPath = path.join(
+  __dirname,
+  "./src/environments/environment.development.ts"
+);
 fs.writeFile(targetPath, envFile, (err) => {
   if (err) {
     console.error(err);
@@ -18,7 +21,7 @@ fs.writeFile(targetPath, envFile, (err) => {
   } else {
     console.log(
       successColor,
-      `${checkSign} Successfully generated environment.ts`
+      `${checkSign} Successfully generated environment.development.ts`
     );
   }
 });

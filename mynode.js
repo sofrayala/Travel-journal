@@ -10,10 +10,12 @@ const envFile = `export const environment = {
     MAP_BOX_TOKEN: '${process.env.MAP_BOX_TOKEN}',
 };
 `;
-const targetPath = path.join(
-  __dirname,
-  "./src/environments/environment.development.ts"
-);
+const envDir = path.join(__dirname, "./src/environments");
+if (!fs.existsSync(envDir)) {
+  fs.mkdirSync(envDir, { recursive: true });
+}
+
+const targetPath = path.join(envDir, "environment.development.ts");
 fs.writeFile(targetPath, envFile, (err) => {
   if (err) {
     console.error(err);

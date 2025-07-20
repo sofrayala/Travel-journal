@@ -11,10 +11,11 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ChartType, ChartData, ChartOptions } from 'chart.js';
 import { TripCardService } from '../../shared/services/trip-card.service';
 import { AuthServiceService } from '../../core/auth/services/auth.service';
+import { FooterComponent } from '../../shared/features/footer/footer.component';
 
 @Component({
   selector: 'app-insights',
-  imports: [BaseChartDirective, NavbarComponent],
+  imports: [BaseChartDirective, NavbarComponent, FooterComponent],
   templateUrl: './insights.component.html',
   styleUrl: './insights.component.css',
 })

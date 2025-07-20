@@ -5,6 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignUpInterface } from '../../../../features/interfaces/sign-up-interface';
 import { AuthServiceService } from '../../services/auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { FooterComponent } from '../../../../shared/features/footer/footer.component';
 
 @Component({
   selector: 'app-auth-signup',
@@ -14,6 +15,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     RouterModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    FooterComponent,
   ],
   templateUrl: './auth-signup.component.html',
   styleUrl: './auth-signup.component.css',

@@ -68,34 +68,34 @@
 
 <!-- Highlights-->
 <div
-  class="w-full max-w-2xl lg:max-w-4xl mx-auto mt-8 p-6 rounded-lg shadow-lg bg-white"
+  class="w-full max-w-2xl lg:max-w-5xl mx-auto mt-8 p-6 rounded-lg shadow-lg bg-white text-lg"
 >
-  <p class="text-gray-600 mb-4 flex gap-1 items-center gap-3">
+  <p class="text-gray-600 mb-4 flex gap-1 items-center gap-3 text-base">
     <span class="font-semibold">Start date:</span> {{ trip.startDate }}<br />
     <span class="text-gray-400">|</span>
     <span class="font-semibold">End date:</span> {{ trip.endDate }}
   </p>
   <div class="mb-4">
-    <p class="font-bold text-xl text-gray-600 my-3" id="title">Highlights</p>
-    <span class="font-semibold text-lg">Food:</span>
+    <p class="font-bold text-3xl text-gray-600 my-3">Highlights</p>
+    <span class="font-bold text-gray-600 text-xl">Food:</span>
     <div class="my-2">
       {{ trip.food }}
     </div>
   </div>
   <div class="mb-4">
-    <span class="font-semibold text-lg">View:</span>
+    <span class="font-bold text-gray-600 text-xl">View:</span>
     <div class="my-2">
       {{ trip.view }}
     </div>
   </div>
   <div class="mb-4">
-    <span class="font-semibold text-lg">Nature:</span>
+    <span class="font-bold text-gray-600 text-xl">Nature:</span>
     <div class="my-2">
       {{ trip.nature }}
     </div>
   </div>
   <div class="mb-4">
-    <span class="font-semibold text-lg">Random:</span>
+    <span class="font-bold text-gray-600 text-xl">Random:</span>
     <div class="my-2">
       {{ trip.random }}
     </div>
@@ -105,7 +105,7 @@
 <app-ratings [tripId]="trip.id"></app-ratings>
 }
 <ng-template #loadingOrNotFound>
-  <div class="text-center mt-10 text-gray-500">
+  <div class="text-center mt-10 text-gray-500 text-lg">
     Loading trip information or trip not found.
   </div>
 </ng-template>

@@ -12,7 +12,7 @@
     @if (userEmail) {
 
     <button mat-menu-item disabled>
-      <span>Hi, {{ userEmail }}</span>
+      <span [routerLink]="['/profile']">Hi, {{ userEmail }}</span>
     </button>
     <button mat-menu-item>
       <span [routerLink]="['/insights']">Insights</span>
@@ -45,7 +45,7 @@
   </div>
   @if (userEmail) {
   <div>
-    <span class="mr-4">Hi, {{ userEmail }}</span>
+    <span [routerLink]="['/profile']" class="mr-4">Hi, {{ userEmail }}</span>
     <span>|</span>
     <p [routerLink]="['/insights']">Insights</p>
 

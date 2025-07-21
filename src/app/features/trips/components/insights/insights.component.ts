@@ -6,16 +6,14 @@ import {
   viewChild,
   ViewChild,
 } from '@angular/core';
-import { NavbarComponent } from '../../../layout/navbar/navbar.component';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartType, ChartData, ChartOptions } from 'chart.js';
 import { TripCardService } from '../../services/trip-card.service';
 import { AuthServiceService } from '../../../../core/auth/services/auth.service';
-import { FooterComponent } from '../../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-insights',
-  imports: [BaseChartDirective, NavbarComponent, FooterComponent],
+  imports: [BaseChartDirective],
   templateUrl: './insights.component.html',
   styleUrl: './insights.component.css',
 })

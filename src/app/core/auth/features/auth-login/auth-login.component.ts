@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { NavbarComponent } from '../../../../features/layout/navbar/navbar.component';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LogInInterface } from '../../interfaces/log-in-interface';
@@ -9,13 +8,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-auth-login',
-  imports: [
-    RouterLink,
-    RouterModule,
-    ReactiveFormsModule,
-    NavbarComponent,
-    MatSnackBarModule,
-  ],
+  imports: [RouterLink, RouterModule, ReactiveFormsModule, MatSnackBarModule],
   templateUrl: './auth-login.component.html',
   styleUrl: './auth-login.component.css',
 })

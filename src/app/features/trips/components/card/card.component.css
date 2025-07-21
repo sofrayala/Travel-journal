@@ -18,6 +18,9 @@
   background-color: rgb(240, 243, 245);
 }
 
+#addTripCard:hover {
+  cursor: pointer;
+}
 svg:hover {
   transform: scale(1.05);
 }
@@ -75,5 +78,9 @@ p {
     width: 17%;
     min-width: 300px;
     margin: 0;
+  }
+
+  .card:hover {
+    cursor: pointer;
   }
 }

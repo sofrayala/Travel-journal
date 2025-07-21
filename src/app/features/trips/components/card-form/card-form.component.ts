@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { NavbarComponent } from '../../../layout/navbar/navbar.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TripCardService } from '../../services/trip-card.service';
 import { Router } from '@angular/router';
@@ -9,7 +8,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-card-form',
-  imports: [NavbarComponent, ReactiveFormsModule, MatSnackBarModule],
+  imports: [ReactiveFormsModule, MatSnackBarModule],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.css',
 })

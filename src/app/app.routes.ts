@@ -11,12 +11,21 @@ import { TripComponent } from './features/trips/components/trip/trip.component';
 import { InsightsComponent } from './features/trips/components/insights/insights.component';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'profile', canActivate: [authGuard], component: ProfileComponent },
-  { path: 'sign-up', component: AuthSignupComponent },
-  { path: 'log-in', component: AuthLoginComponent },
-  { path: 'card-form', component: CardFormComponent },
-  { path: 'trip/:id', component: TripComponent },
-  { path: 'insights', component: InsightsComponent },
+  {
+    path: '',
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
+      {
+        path: 'profile',
+        canActivate: [authGuard],
+        component: ProfileComponent,
+      },
+      { path: 'sign-up', component: AuthSignupComponent },
+      { path: 'log-in', component: AuthLoginComponent },
+      { path: 'card-form', component: CardFormComponent },
+      { path: 'trip/:id', component: TripComponent },
+      { path: 'insights', component: InsightsComponent },
+    ],
+  },
 ];

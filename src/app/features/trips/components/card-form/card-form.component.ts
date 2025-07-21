@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from '../../../layout/navbar/navbar.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TripCardService } from '../../shared/services/trip-card.service';
+import { TripCardService } from '../../services/trip-card.service';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 

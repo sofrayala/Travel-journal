@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TripCardService } from '../../shared/services/trip-card.service';
+import { TripCardService } from '../../services/trip-card.service';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { CardInterface } from '../interfaces/card-interface';
+import { NavbarComponent } from '../../../layout/navbar/navbar.component';
+import { CardInterface } from '../../interfaces/card-interface';
 import { RatingsComponent } from '../ratings/ratings.component';
-
 @Component({
   selector: 'app-trip',
   imports: [CommonModule, NavbarComponent, RatingsComponent],

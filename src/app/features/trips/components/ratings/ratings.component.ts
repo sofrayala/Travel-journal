@@ -6,10 +6,10 @@ import {
   SimpleChanges,
   inject,
 } from '@angular/core';
-import { AuthServiceService } from '../../core/auth/services/auth.service';
+import { AuthServiceService } from '../../../../core/auth/services/auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { TitleCasePipe } from '@angular/common';
-import { TripCardService } from '../../shared/services/trip-card.service';
+import { TripCardService } from '../../services/trip-card.service';
 
 @Component({
   selector: 'app-ratings',

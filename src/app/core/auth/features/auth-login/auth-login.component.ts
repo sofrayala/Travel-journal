@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { NavbarComponent } from '../../../../features/navbar/navbar.component';
+import { NavbarComponent } from '../../../../features/layout/navbar/navbar.component';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LogInInterface } from '../../../../features/interfaces/log-in-interface';
+import { LogInInterface } from '../../interfaces/log-in-interface';
 import { AuthServiceService } from '../../services/auth.service';
-import { TripCardService } from '../../../../shared/services/trip-card.service';
+import { TripCardService } from '../../../../features/trips/services/trip-card.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({

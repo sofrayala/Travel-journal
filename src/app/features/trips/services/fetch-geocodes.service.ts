@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ElementRef, ViewChild, inject } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
-import { SupabaseService } from './supabase.service';
+import { environment } from '../../../../environments/environment.development';
+import { SupabaseService } from '../../../shared/services/supabase.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

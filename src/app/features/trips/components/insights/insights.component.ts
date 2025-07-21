@@ -6,12 +6,12 @@ import {
   viewChild,
   ViewChild,
 } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from '../../../layout/navbar/navbar.component';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartType, ChartData, ChartOptions } from 'chart.js';
-import { TripCardService } from '../../shared/services/trip-card.service';
-import { AuthServiceService } from '../../core/auth/services/auth.service';
-import { FooterComponent } from '../../shared/features/footer/footer.component';
+import { TripCardService } from '../../services/trip-card.service';
+import { AuthServiceService } from '../../../../core/auth/services/auth.service';
+import { FooterComponent } from '../../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-insights',
@@ -25,7 +25,6 @@ export class InsightsComponent {
   private cdr = inject(ChangeDetectorRef);
   private viewReady = false;
   loading = true;
-  // @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
   @ViewChild('barChart') barChart?: BaseChartDirective;
   @ViewChild('lineChart') lineChart?: BaseChartDirective;
 

@@ -1,8 +1,8 @@
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from '../../../layout/navbar/navbar.component';
 import { Component } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { MapComponent } from '../map/map.component';
-import { FooterComponent } from '../../shared/features/footer/footer.component';
+import { FooterComponent } from '../../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-profile',

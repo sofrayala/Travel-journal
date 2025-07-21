@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { NavbarComponent } from '../../../../features/navbar/navbar.component';
+import { NavbarComponent } from '../../../../features/layout/navbar/navbar.component';
 import { RouterLink, RouterModule } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SignUpInterface } from '../../../../features/interfaces/sign-up-interface';
+import { SignUpInterface } from '../../interfaces/sign-up-interface';
 import { AuthServiceService } from '../../services/auth.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { FooterComponent } from '../../../../shared/features/footer/footer.component';
+import { FooterComponent } from '../../../../features/layout/footer/footer.component';
 
 @Component({
   selector: 'app-auth-signup',

@@ -8,11 +8,11 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
-import { SupabaseService } from '../../shared/services/supabase.service';
+import { environment } from '../../../../../environments/environment.development';
+import { SupabaseService } from '../../../../shared/services/supabase.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthServiceService } from '../../core/auth/services/auth.service';
+import { AuthServiceService } from '../../../../core/auth/services/auth.service';
 // import { FetchGeocodesService } from '../../shared/fetch-geocodes.service';
 
 @Component({
@@ -29,7 +29,6 @@ export class MapComponent implements OnInit, OnDestroy {
   private authService = inject(AuthServiceService);
   private http = inject(HttpClient);
   private router = inject(Router);
-  // private fetchGeocodesService = inject(FetchGeocodesService);
   countriesDb: string[] = [];
   trips: any[] = [];
   mapboxgl: any;

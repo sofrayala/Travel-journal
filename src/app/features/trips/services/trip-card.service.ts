@@ -1,8 +1,8 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
-import { SupabaseService } from './supabase.service';
-import { TripCardState } from '../../features/interfaces/trip-card-state';
-import { AuthServiceService } from '../../core/auth/services/auth.service';
-import { CardInterface } from '../../features/interfaces/card-interface';
+import { SupabaseService } from '../../../shared/services/supabase.service';
+import { TripCardState } from '../interfaces/trip-card-state';
+import { AuthServiceService } from '../../../core/auth/services/auth.service';
+import { CardInterface } from '../interfaces/card-interface';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { FetchGeocodesService } from './fetch-geocodes.service';

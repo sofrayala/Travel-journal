@@ -1,4 +1,4 @@
-## TravelJournal
+# TravelJournal
 
 <p>
   <img src="public/travelJournal.png" alt="Captura de pantalla del proyecto" />
@@ -39,12 +39,12 @@ Your profile includes a dynamic world map, showcasing markers for each country y
 npm install
 ```
 
-## 🛠️ Installation
+<!-- ## 🛠️ Installation
 
 ### ✔️ Prerequisites
 
-Make sure Node.js is installed on your system. You can download it from nodejs.org.  
-ℹ️ **You don’t need to install Angular CLI globally**, as it will be included with the project dependencies.
+Make sure Node.js is installed on your system. You can download it from nodejs.org.
+**ℹ️ You don’t need to install Angular CLI globally**, as it will be included with the project dependencies.
 
 ### ✔️ Step-by-step Installation
 
@@ -103,11 +103,11 @@ To deploy this Angular project on [Vercel](https://vercel.com), follow these ste
 
 1. **Update package.json script:**
 
-   ```json
+   ```bash
    "build": "node mynode.js && ng build"
    ```
 
-2. **Create a .js file that generates an envFile:**  
+2. **Create a .js file that generates an envFile:**
    Use the `mynode.js` file as an example, update the environment variables to match yours.
 
 3. **Install dotenv:**
@@ -116,7 +116,7 @@ To deploy this Angular project on [Vercel](https://vercel.com), follow these ste
 npm i dotenv
 ```
 
-4. **Create a .env file:**  
+4. **Create a .env file:**
    Fill it with your environment variables.
 
 5. **Push the project to GitHub (or any Git provider supported by Vercel).**
@@ -125,10 +125,10 @@ npm i dotenv
 
 7. **Set environment variables in the Vercel project settings:**
 
-   Go to **Settings > Environment Variables**  
+   Go to **Settings > Environment Variables**
    Add the same variables you use locally (e.g., Supabase keys, Mapbox token).
 
-8. **Deploy:**  
+8. **Deploy:**
    Vercel will automatically build and deploy the app.
 
 ## Development server
@@ -204,7 +204,7 @@ Your profile includes a dynamic world map, showcasing markers for each country y
 
 ### **✔️ Prerequisites**
 
-Make sure Node.js is installed on your system. You can download it from nodejs.org.  
+Make sure Node.js is installed on your system. You can download it from nodejs.org.
 ℹ️ **You don’t need to install Angular CLI globally**, as it will be included with the project dependencies.
 
 ### **✔️ Step-by-step Installation**
@@ -324,4 +324,4 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 #   T r a v e l - j o u r n a l 
  
- 
+  -->

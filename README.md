@@ -1,8 +1,8 @@
 # TravelJournal
 
-<p>
+<!-- <p>
   <img src="public/travelJournal.png" alt="Captura de pantalla del proyecto" />
-</p>
+</p> -->
 
 ## 📄 Description
 

@@ -44,7 +44,7 @@ npm install
 ### ✔️ Prerequisites
 
 Make sure Node.js is installed on your system. You can download it from nodejs.org.  
-ℹ️ **You don’t need to install Angular CLI globally**, as it will be included with the project dependencies.
+**ℹ️ You don’t need to install Angular CLI globally**, as it will be included with the project dependencies.
 
 ### ✔️ Step-by-step Installation
 
@@ -103,7 +103,7 @@ To deploy this Angular project on [Vercel](https://vercel.com), follow these ste
 
 1. **Update package.json script:**
 
-   ```json
+   ```bash
    "build": "node mynode.js && ng build"
    ```
 

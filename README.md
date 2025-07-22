@@ -1,11 +1,3 @@
-## TravelJournal
-
-<p>
-  <img src="public/travelJournal.png" alt="Captura de pantalla del proyecto" />
-</p>
-
-## 📄 Description
-
 # TravelJournal
 
 <p>

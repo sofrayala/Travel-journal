@@ -21,6 +21,10 @@ export class CardFormComponent {
   countries: string[] = [];
   private snackBar = inject(MatSnackBar);
 
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  }
+
   //get countries API
 
   fetchData() {

@@ -1,4 +1,26 @@
 <section>
+  <div>
+    <button
+      (click)="goToProfile()"
+      class="hover:bg-black hover:text-white text-black rounded-full p-2 shadow-lg transition ml-2 mt-2"
+      title="Back to profile"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5"
+        />
+      </svg>
+    </button>
+  </div>
   <h2 class="text-3xl text-center">Trip information</h2>
   <form class="max-w-sm mx-auto" [formGroup]="form">
     <div class="mb-5">

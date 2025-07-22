@@ -40,6 +40,7 @@ export class NavbarComponent implements OnInit {
     snackBarRef.onAction().subscribe(async () => {
       try {
         await this.authService.signOut();
+        this.userEmail = null;
         this.snackBar.open('✅ You are logged out', 'Close', {
           duration: 4000,
         });

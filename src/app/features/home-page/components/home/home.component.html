@@ -1,0 +1,176 @@
+<!-- Header -->
+<header class="bg-white dark:bg-gray-900">
+  <div
+    class="grid max-w-screen px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 bg-cover bg-center"
+    style="
+      background-image: url('https://images.pexels.com/photos/1619317/pexels-photo-1619317.jpeg');
+      min-height: 100vh;
+    "
+  >
+    <div
+      class="col-span-12 flex flex-col items-center justify-center text-center"
+    >
+      <h1
+        class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
+      >
+        Travel Journal App
+      </h1>
+      <p
+        class="max-w-2xl mb-6 font-light text-white lg:mb-8 md:text-lg lg:text-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
+      >
+        Capture every detail of your travels in a personal journal, share your
+        unique adventures with family and friends, and turn your memories into
+        beautifully printed books.
+      </p>
+      <div
+        class="flex flex-col gap-4 w-full max-w-xs sm:flex-row sm:justify-center sm:gap-4"
+      >
+        <a
+          href="#"
+          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-white rounded-lg bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          [routerLink]="['/sign-up']"
+        >
+          Start a journal
+          <svg
+            class="w-5 h-5 ml-2 -mr-1"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </a>
+        <a
+          href="#"
+          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-black hover:bg-gray-700 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          [routerLink]="['/log-in']"
+        >
+          Log in
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- end header -->
+<!-- Section -->
+<section class="bg-white dark:bg-gray-900 mb-6">
+  <div
+    class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
+  >
+    <div class="font-light text-gray-500 sm:text-lg dark:text-black">
+      <h2 class="mb-4 text-2xl tracking-tight font-extrabold text-gray-800">
+        Create your travel journal online
+      </h2>
+
+      <p class="mb-4">
+        Easily add stories to your diary in our online editor or app. Enhance
+        your diary with maps and empty boxes to paste your treasured mementos.
+        Keep track of your travels in your profile map and access your insights.
+      </p>
+      <p class="mb-4">
+        Be part of our community and take advantage of all our perks. Read other
+        travel stories to get inspired and, if you like, share yours with the
+        world.
+      </p>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mt-8">
+      <img
+        class="w-full rounded-lg"
+        src="https://images.pexels.com/photos/1080421/pexels-photo-1080421.jpeg"
+        alt="trvel1"
+      />
+      <img
+        class="mt-4 w-full lg:mt-10 rounded-lg"
+        src="https://images.pexels.com/photos/30958660/pexels-photo-30958660.jpeg"
+        alt="travel2"
+      />
+    </div>
+  </div>
+</section>
+<!-- end section -->
+
+<!-- 
+  Features
+-->
+<section class="bg-gray-100" id="features">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 mt-4">
+    <div
+      class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0"
+    >
+      <div>
+        <div
+          class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="bg-black"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+            />
+          </svg>
+        </div>
+        <h3 class="mb-2 text-xl font-bold dark:text-white">Highlights log</h3>
+        <p class="text-gray-500 dark:text-gray-400">
+          Store all your highlights and funny memories in just one place. This
+          way you can look back into past trip and adventures with friends and
+          loved ones.
+        </p>
+      </div>
+      <div>
+        <div
+          class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900"
+        >
+          <svg
+            class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </div>
+        <h3 class="mb-2 text-xl font-bold dark:text-white">Insights</h3>
+        <p class="text-gray-500 dark:text-gray-400">
+          Get personalized insights of all your trips for an overall view of
+          your preferences.
+        </p>
+      </div>
+      <div>
+        <div
+          class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900"
+        >
+          <svg
+            class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"
+            ></path>
+          </svg>
+        </div>
+        <h3 class="mb-2 text-xl font-bold dark:text-white">Easy access</h3>
+        <p class="text-gray-500 dark:text-gray-400">
+          Keep track of you trips from wherever you are, with this app you can
+          create your travel journal form anywhere with an internet connection!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

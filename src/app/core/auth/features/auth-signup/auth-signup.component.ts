@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { RouterLink, RouterModule, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignUpInterface } from '../../interfaces/sign-up-interface';
 import { AuthServiceService } from '../../services/auth.service';
@@ -15,6 +15,8 @@ export class AuthSignupComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthServiceService);
   private snackBar = inject(MatSnackBar);
+  private router = inject(Router);
+
   submitted = false;
 
   form = this.formBuilder.group<SignUpInterface>({
@@ -49,9 +51,14 @@ export class AuthSignupComponent {
 
       if (authResponse.error) throw authResponse.error;
 
-      this.snackBar.open('✅Registration successfull', 'Close', {
-        duration: 4000,
-      });
+      this.snackBar
+        .open('✅Registration successfull', 'Close', {
+          duration: 2000,
+        })
+        .afterDismissed()
+        .subscribe(() => {
+          this.router.navigateByUrl('/log-in');
+        });
     } catch (error) {
       this.snackBar.open('❌Registration failed', 'Close', {
         duration: 4000,

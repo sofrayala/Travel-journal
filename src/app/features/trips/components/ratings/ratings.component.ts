@@ -70,8 +70,6 @@ export class RatingsComponent implements OnChanges {
           .eq('id', this.tripId)
           .maybeSingle();
 
-        console.log('Trip ratings data:', data, 'Error:', error);
-
         if (data) {
           this.ratings = {
             food: data.r_food ?? 0,
@@ -100,11 +98,6 @@ export class RatingsComponent implements OnChanges {
     }
     this.loading = true;
     try {
-      console.log('Submitting rating:', {
-        userId: this.userId,
-        tripId: this.tripId,
-        ratings: this.ratings,
-      });
       await this.tripCardService.supabaseClient
         .from('trip')
         .update({

@@ -28,7 +28,7 @@ export class FetchGeocodesService {
           // TODO: Mejorar manejo de error
           // ----------------------------------------
           if (!feature) {
-            return console.log(`No coordiantes info for this ${country}`);
+            return console.error(`No coordiantes info for this ${country}`);
           }
           const [longitude, latitude] =
             result?.features?.[0].geometry.coordinates;

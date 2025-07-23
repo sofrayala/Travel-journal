@@ -79,7 +79,7 @@ export class MapComponent implements OnInit, OnDestroy {
           // TODO: Mejorar manejo de error
           // ----------------------------------------
           if (!feature) {
-            return console.log(`No coordiantes info for this ${country}`);
+            return console.error(`No coordiantes info for this ${country}`);
           }
           const [longitude, latitude] =
             result?.features?.[0].geometry.coordinates;
@@ -127,15 +127,14 @@ export class MapComponent implements OnInit, OnDestroy {
                   const clickedTripId = (
                     event.currentTarget as HTMLElement
                   ).getAttribute('data-trip-id');
-                  console.log('Popup clicked', { clickedTripId });
                   if (clickedTripId) {
                     this.goToTrip(clickedTripId); // Use your function here
                   } else {
-                    console.log('No tripId found for this marker.');
+                    console.error('No tripId found for this marker.');
                   }
                 });
               } else {
-                console.log('Popup element not found in DOM.');
+                console.error('Popup element not found in DOM.');
               }
             });
           }

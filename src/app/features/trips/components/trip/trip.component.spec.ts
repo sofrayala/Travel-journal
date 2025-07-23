@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TripComponent } from './trip.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TripCardService } from '../../shared/services/trip-card.service';
+import { TripCardService } from '../../services/trip-card.service';
 
 describe('TripComponent', () => {
   let component: TripComponent;

@@ -94,7 +94,7 @@ export class TripCardService {
       this.getAllTrips();
       this.tripSelected = null;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       this.snackBar.open(
         '❌Something went wrong. Please try again later',
         'Close',
@@ -148,7 +148,7 @@ export class TripCardService {
       this.tripSelected = null;
       this.router.navigateByUrl('/profile');
     } catch (error) {
-      console.log(error);
+      console.error(error);
       this.snackBar.open(
         '❌Something went wrong. Please try again later',
         'Close',

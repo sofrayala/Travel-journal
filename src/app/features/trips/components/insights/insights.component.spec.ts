@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InsightsComponent } from './insights.component';
-import { TripCardService } from '../../shared/services/trip-card.service';
+import { TripCardService } from '../../services/trip-card.service';
 import { ActivatedRoute } from '@angular/router';
-import { AuthServiceService } from '../../core/auth/services/auth.service';
+import { AuthServiceService } from '../../../../core/auth/services/auth.service';
 
 describe('InsightsComponent', () => {
   let component: InsightsComponent;

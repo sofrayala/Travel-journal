@@ -12,9 +12,7 @@ export class AuthServiceService {
   private supabaseClient = inject(SupabaseService).supabaseClient;
 
   constructor() {
-    this.supabaseClient.auth.onAuthStateChange((session) => {
-      console.log(session);
-    });
+    this.supabaseClient.auth.onAuthStateChange((session) => {});
   }
 
   session() {

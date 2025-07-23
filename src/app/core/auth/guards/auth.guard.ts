@@ -17,15 +17,3 @@ export const authGuard: CanActivateFn = async () => {
 
   return !!data.session;
 };
-
-export const publicGuard: CanActivateFn = async () => {
-  const router = routerInjection();
-
-  const { data } = await authService().session();
-
-  if (data.session) {
-    router.navigateByUrl('/profile');
-  }
-
-  return !data.session;
-};
